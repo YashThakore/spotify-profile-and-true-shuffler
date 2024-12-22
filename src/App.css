@@ -1,0 +1,149 @@
+/* General */
+.app {
+  display: flex;
+  height: 100vh;
+  background-color: #121212;
+  color: #fff;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  background: #000;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.sidebar .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1DB954;
+  text-align: center;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar nav ul li {
+  margin: 15px 0;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.sidebar nav ul li.active {
+  color: #1DB954;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  padding: 40px;
+  text-align: center;
+  overflow-y: auto;
+}
+
+/* Profile Section */
+.profile {
+  margin: 20px auto;
+}
+
+.profile img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 4px solid #1DB954;
+}
+
+.profile h1 {
+  font-size: 2rem;
+  margin: 10px 0;
+}
+
+.profile .stats {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.profile .stats p {
+  font-size: 1rem;
+  color: #b3b3b3;
+}
+
+.profile .stats p span {
+  color: #1DB954;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.logout-btn {
+  margin-top: 20px;
+  padding: 8px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 50px;
+  background: #1DB954;
+  color: white;
+  cursor: pointer;
+}
+
+/* Content Grid */
+.content-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.grid-item {
+  background: #181818;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.grid-item h2 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.see-more-btn {
+  margin-top: 10px;
+  padding: 8px 16px;
+  border: 1px solid #1DB954;
+  border-radius: 50px;
+  background: transparent;
+  color: #1DB954;
+  cursor: pointer;
+}
+
+.see-more-btn:hover {
+  background: #1DB954;
+  color: #fff;
+}
+
+/* Login Button */
+.login-btn {
+  margin-top: 20%;
+  padding: 10px 20px;
+  background-color: #1DB954;
+  color: white;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+/* Scrollbar (Optional) */
+.main-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.main-content::-webkit-scrollbar-thumb {
+  background: #1DB954;
+  border-radius: 8px;
+}
