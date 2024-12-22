@@ -1,0 +1,122 @@
+.recent-page {
+  padding: 40px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.loading {
+  text-align: center;
+  color: #b3b3b3;
+  margin-top: 40px;
+  font-size: 1.1rem;
+}
+
+.error {
+  text-align: center;
+  color: #ff4444;
+  margin-top: 40px;
+  padding: 20px;
+  background: rgba(255, 68, 68, 0.1);
+  border-radius: 8px;
+}
+
+.no-tracks {
+  text-align: center;
+  color: #b3b3b3;
+  margin-top: 40px;
+  font-size: 1.1rem;
+}
+
+.recent-tracks {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 30px;
+}
+
+.track-item {
+  display: flex;
+  background: #181818;
+  border-radius: 8px;
+  padding: 16px;
+  transition: background-color 0.2s;
+}
+
+.track-item:hover {
+  background: #282828;
+}
+
+.track-item img {
+  width: 80px;
+  height: 80px;
+  border-radius: 4px;
+  margin-right: 16px;
+}
+
+.track-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.track-info h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.track-info p {
+  margin: 4px 0;
+  color: #b3b3b3;
+}
+
+.played-at {
+  font-size: 0.8rem;
+  color: #686868;
+  margin-top: 4px;
+}
+
+.track-info a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.track-info a:hover h3 {
+  color: #1DB954;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .recent-page {
+    padding: 20px;
+  }
+
+  .track-item {
+    padding: 12px;
+  }
+
+  .track-item img {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .track-item img {
+    width: 48px;
+    height: 48px;
+    margin-right: 12px;
+  }
+
+  .track-info h3 {
+    font-size: 0.95rem;
+  }
+
+  .track-info p {
+    font-size: 0.85rem;
+  }
+
+  .played-at {
+    font-size: 0.7rem;
+  }
+} 
