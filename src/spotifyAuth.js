@@ -6,7 +6,8 @@ const scopes = [
   'playlist-read-collaborative',
   'user-read-recently-played',
   'user-read-playback-state',
-  'user-read-currently-playing'
+  'user-read-currently-playing',
+  'user-follow-read'
 ];
 
 export const getAuthUrl = () => {

@@ -1,0 +1,260 @@
+.true-shuffle-page {
+  padding: 40px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.playlist-settings {
+  margin-top: 30px;
+  background: #181818;
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.playlist-settings h2 {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.playlist-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.playlist-item {
+  background: #282828;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.playlist-item:hover {
+  background: #333333;
+}
+
+.playlist-checkbox {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.playlist-checkbox input {
+  display: none;
+}
+
+.checkbox-custom {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #b3b3b3;
+  border-radius: 4px;
+  margin-right: 16px;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.playlist-checkbox input:checked+.checkbox-custom {
+  background: #1DB954;
+  border-color: #1DB954;
+}
+
+.playlist-checkbox input:checked+.checkbox-custom::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.true-shuffle-playlist-default-image {
+  width: 75px;
+  height: 75px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, #1DB954 0%, #1ed760 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.true-shuffle-playlist-default-image span {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.playlist-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.playlist-info img {
+  width: 72px;
+  /* Increase width of cover image */
+  height: 72px;
+  /* Increase height of cover image */
+  border-radius: 4px;
+  /* Rounded corners */
+  margin-right: 16px;
+  /* Space between image and text */
+}
+
+.playlist-details {
+  flex: 1;
+}
+
+.playlist-details h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.playlist-details p {
+  margin: 4px 0 0;
+  font-size: 0.9rem;
+  color: #b3b3b3;
+}
+
+.loading {
+  text-align: center;
+  color: #b3b3b3;
+  font-size: 1.1rem;
+  margin-top: 40px;
+}
+
+.error {
+  text-align: center;
+  color: #ff4444;
+  font-size: 1.1rem;
+  margin-top: 40px;
+  padding: 20px;
+  background: rgba(255, 68, 68, 0.1);
+  border-radius: 8px;
+}
+
+.settings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.save-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.save-status {
+  font-size: 0.9rem;
+  color: #b3b3b3;
+}
+
+.save-button {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: transparent;
+  border: 1px solid #535353;
+  color: #b3b3b3;
+}
+
+.save-button.active {
+  background: #1DB954;
+  border-color: #1DB954;
+  color: white;
+}
+
+.save-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.save-button:not(:disabled):hover {
+  transform: scale(1.02);
+}
+
+.server-error {
+  background: rgba(255, 68, 68, 0.1);
+  color: #ff4444;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .true-shuffle-page {
+    padding: 20px;
+  }
+
+  .playlist-settings {
+    padding: 16px;
+  }
+
+  .playlist-info img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.faq-button {
+  background: #1DB954;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.faq-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.faq-content {
+  background: #181818;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 100%;
+  color: #fff;
+}
+
+.close-faq {
+  background: #1DB954;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}

@@ -1,6 +1,6 @@
 .recent-page {
   padding: 40px;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -30,15 +30,16 @@
 .recent-tracks {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
   margin-top: 30px;
 }
 
 .track-item {
   display: flex;
+  align-items: center;
   background: #181818;
-  border-radius: 8px;
-  padding: 16px;
+  border-radius: 4px;
+  padding: 12px;
   transition: background-color 0.2s;
 }
 
@@ -47,33 +48,46 @@
 }
 
 .track-item img {
-  width: 80px;
-  height: 80px;
+  width: 56px;
+  height: 56px;
   border-radius: 4px;
   margin-right: 16px;
 }
 
 .track-info {
   flex: 1;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.track-info .track-details {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 2px;
 }
 
 .track-info h3 {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .track-info p {
-  margin: 4px 0;
+  margin: 0;
   color: #b3b3b3;
+  font-size: 0.85rem;
 }
 
 .played-at {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: #686868;
-  margin-top: 4px;
+  text-align: right;
+  white-space: nowrap;
 }
 
 .track-info a {
@@ -92,12 +106,16 @@
   }
 
   .track-item {
-    padding: 12px;
+    padding: 8px;
   }
 
-  .track-item img {
-    width: 60px;
-    height: 60px;
+  .track-info {
+    grid-template-columns: 1fr;
+  }
+
+  .played-at {
+    font-size: 0.7rem;
+    text-align: left;
   }
 }
 
@@ -109,14 +127,56 @@
   }
 
   .track-info h3 {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
 
   .track-info p {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
+}
 
-  .played-at {
-    font-size: 0.7rem;
+.track-item.now-playing {
+  position: relative;
+  background: #282828;
+  margin-bottom: 16px;
+  z-index: 1;
+}
+
+.track-item.now-playing::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: 4px;
+  background: linear-gradient(
+    90deg,
+    #1DB954 0%,
+    #1ed760 25%,
+    #1DB954 50%,
+    #1ed760 75%,
+    #1DB954 100%
+  );
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: rotate 3s linear infinite;
+  background-size: 200% 100%;
+}
+
+@keyframes rotate {
+  0% {
+    background-position: 0% 0;
   }
-} 
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.track-item.now-playing .played-at {
+  color: #1DB954;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+  

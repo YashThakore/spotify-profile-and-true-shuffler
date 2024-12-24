@@ -13,10 +13,9 @@ function NowPlaying() {
         const response = await spotifyApi.getMyCurrentPlayingTrack();
         if (response && response.item) {
           setCurrentTrack(response.item);
-          setProgress(response.progress_ms);
+          setProgress(response.progress_ms || 0);
           setIsPlaying(response.is_playing);
         } else {
-          // If no current track, get the last played
           const recentTracks = await spotifyApi.getMyRecentlyPlayedTracks({ limit: 1 });
           if (recentTracks.items.length > 0) {
             setCurrentTrack(recentTracks.items[0].track);
@@ -30,24 +29,34 @@ function NowPlaying() {
     };
 
     fetchCurrentTrack();
-    // Fetch track data every 10 seconds
-    const fetchInterval = setInterval(fetchCurrentTrack, 10000);
 
-    // Update progress every second if track is playing
-    const progressInterval = setInterval(() => {
-      if (isPlaying) {
-        setProgress(prev => {
-          if (currentTrack && prev < currentTrack.duration_ms) {
-            return prev + 1000;
+    // Update current track data every 3 seconds
+    const fetchInterval = setInterval(fetchCurrentTrack, 3000);
+
+    return () => clearInterval(fetchInterval);
+  }, []);
+
+  // Separate useEffect for progress updates
+  useEffect(() => {
+    let progressInterval;
+
+    if (isPlaying) {
+      progressInterval = setInterval(() => {
+        setProgress(prevProgress => {
+          if (currentTrack && prevProgress < currentTrack.duration_ms) {
+            return prevProgress + 1000;
+          } else {
+            clearInterval(progressInterval);
+            return 0;
           }
-          return prev;
         });
-      }
-    }, 1000);
+      }, 1000);
+    }
 
     return () => {
-      clearInterval(fetchInterval);
-      clearInterval(progressInterval);
+      if (progressInterval) {
+        clearInterval(progressInterval);
+      }
     };
   }, [isPlaying, currentTrack]);
 
@@ -62,37 +71,41 @@ function NowPlaying() {
   return (
     <div className="now-playing">
       <div className="now-playing-content">
-        <img 
-          src={currentTrack.album.images[2]?.url} // Using smaller image (64x64)
-          alt={currentTrack.name} 
-          className="album-art"
-        />
-        <div className="track-info">
-          <div className="track-details">
-            <a 
-              href={currentTrack.external_urls.spotify} 
-              target="_blank" 
-              rel="noopener noreferrer"
-            >
-              <h3>{currentTrack.name}</h3>
-            </a>
-            <p>{currentTrack.artists[0].name}</p>
+        <div className="track-header">
+          <img 
+            src={currentTrack.album.images[1]?.url} 
+            alt={currentTrack.name} 
+            className="album-art"
+          />
+          <div className="track-info">
+            <div className="track-details">
+              <a 
+                href={currentTrack.external_urls.spotify} 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <h3>{currentTrack.name}</h3>
+              </a>
+              <p>{currentTrack.artists[0].name}</p>
+            </div>
           </div>
-          <div className="progress-container">
-            <div className="progress-bar">
-              <div 
-                className="progress-fill"
-                style={{ width: `${(progress / currentTrack.duration_ms) * 100}%` }}
-              ></div>
-            </div>
-            <div className="time-info">
-              <span>{formatTime(progress)}</span>
-              <span>{formatTime(currentTrack.duration_ms)}</span>
-            </div>
+          <div className="playback-status">
+            {isPlaying ? 'Now Playing' : 'Last Played'}
           </div>
         </div>
-        <div className="playback-status">
-          {isPlaying ? 'Now Playing' : 'Last Played'}
+        <div className="progress-container">
+          <div className="progress-bar">
+            <div 
+              className="progress-fill"
+              style={{ 
+                width: `${Math.min((progress / currentTrack.duration_ms) * 100, 100)}%`
+              }}
+            ></div>
+          </div>
+          <div className="time-info">
+            <span>{formatTime(progress)}</span>
+            <span>{formatTime(currentTrack.duration_ms)}</span>
+          </div>
         </div>
       </div>
     </div>
